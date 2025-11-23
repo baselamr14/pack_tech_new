@@ -1,0 +1,107 @@
+<odoo>
+    <data>
+
+        <record model="ir.module.category" id="sales_plan_group_category">
+            <field name="name">Sales Plan</field>
+            <field name="sequence">7</field>
+        </record>
+
+        <record id="sales_plan_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="category_id" ref="sales_plan_group_category"/>
+        </record>
+        
+        <record id="sales_plan_validation" model="res.groups">
+            <field name="name">Validation</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="category_id" ref="sales_plan_group_category"/>
+        </record>
+        
+        <record id="sales_plan_approver" model="res.groups">
+            <field name="name">Approver</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="category_id" ref="sales_plan_group_category"/>
+        </record>
+        
+        <record id="sales_plan_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="category_id" ref="sales_plan_group_category"/>
+        </record>
+
+         <!-- <record id="journal_comp_rule_manager" model="ir.rule">
+            <field name="name">Journal multi-company manager</field>
+            <field name="model_id" ref="ivs_sales_plan.model_sales_plan"/>
+            <field name="groups" eval="[(6, 0, [ref('ivs_sales_plan.sales_plan_validation')])]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+        </record> -->
+
+        <record id="sales_plan_validation_rule" model="ir.rule">
+            <field name="name">Sales plan validation user status filter</field>
+            <field name="model_id" ref="ivs_sales_plan.model_sales_plan"/>
+            <field name="groups" eval="[(6, 0, [ref('ivs_sales_plan.sales_plan_validation')])]"/>
+            <field name="domain_force">[('state','!=', 'new')]</field>
+        </record>
+
+       <!-- <record id="journal_comp_rule_manager" model="ir.rule">
+            <field name="name">Journal multi-company manager</field>
+            <field name="model_id" ref="account.model_account_journal"/>
+            <field name="groups" eval="[(6, 0, [ref('iv_journal_restriction.manager_journal_restrict_group')])]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+        </record>
+
+        <record id="journal_comp_rule" model="ir.rule">
+            <field name="name">Journal multi-company</field>
+            <field name="model_id" ref="account.model_account_journal"/>
+            <field name="groups" eval="[(6, 0, [ref('base.group_user')])]"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids),('user_ids','in', [user.id])]</field>
+        </record> -->
+
+        <!--Account Move Record Rules-->
+        <!-- <record model="ir.rule" id="journal_security_rule_account_move_manager">
+            <field name="name">Account Move of Jornals restricted to manager</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="groups" eval="[(6, 0, [ref('iv_journal_restriction.manager_journal_restrict_group')])]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+        </record>
+
+        <record model="ir.rule" id="journal_security_rule_account_move">
+            <field name="name">Account Move of Jornals restricted to user</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="groups" eval="[(6, 0, [ref('base.group_user')])]"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids),('journal_id.user_ids','in', [user.id])]</field>
+        </record> -->
+
+        <!--Account Move Line Record Rules-->
+        <!-- <record model="ir.rule" id="journal_security_rule_account_move_line_manager">
+            <field name="name">Account Move Line of Jornals restricted to manager</field>
+            <field name="model_id" ref="account.model_account_move_line"/>
+            <field name="groups" eval="[(6, 0, [ref('iv_journal_restriction.manager_journal_restrict_group')])]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+        </record>
+        
+        <record model="ir.rule" id="journal_security_rule_account_move_line">
+            <field name="name">Account Move Line of Jornals restricted to user</field>
+            <field name="model_id" ref="account.model_account_move_line"/>
+            <field name="groups" eval="[(6, 0, [ref('base.group_user')])]"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids),('journal_id.user_ids','in', [user.id])]</field>
+        </record>
+ -->
+        <!--Payment Record Rules-->
+        <!-- <record model="ir.rule" id="journal_security_rule_account_payment_manager">
+            <field name="name">Account Payments of Jornals restricted to manager</field>
+            <field name="model_id" ref="account.model_account_payment"/>
+            <field name="groups" eval="[(6, 0, [ref('iv_journal_restriction.manager_journal_restrict_group')])]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+        </record>
+        
+        <record model="ir.rule" id="journal_security_rule_account_payment">
+            <field name="name">Account Payments of Jornals restricted to user</field>
+            <field name="model_id" ref="account.model_account_payment"/>
+            <field name="groups" eval="[(6, 0, [ref('base.group_user')])]"/>
+            <field name="domain_force">[('journal_id.user_ids','in', [user.id])]</field>
+        </record> -->
+
+    </data>
+</odoo>
